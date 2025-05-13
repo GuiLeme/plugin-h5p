@@ -29,7 +29,7 @@ function PresenterViewerSidekickRenderResultFunction(props: PresenterViewerRende
   } = props;
   const pluginApi = BbbPluginSdk.getPluginApi(pluginUuid);
 
-  const { data: testResultResponse } = pluginApi.useDataChannel<TestResult>('testResult', DataChannelTypes.All_ITEMS);
+  const { data: testResultResponse } = pluginApi.useDataChannel<TestResult>('testResult', DataChannelTypes.ALL_ITEMS);
   const allUsersInfo = pluginApi.useCustomSubscription<UsersMoreInformationGraphqlResponse>(
     USERS_MORE_INFORMATION,
   );

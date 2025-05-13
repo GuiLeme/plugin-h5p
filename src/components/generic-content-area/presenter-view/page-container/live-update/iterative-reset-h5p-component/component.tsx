@@ -16,7 +16,7 @@ export function IterativeResetH5PComponent(props: IterativeResetH5PComponentProp
 
   const {
     data: responseUserH5pCurrentStateList,
-  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.All_ITEMS, 'userH5pCurrentState');
+  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.ALL_ITEMS, 'userH5pCurrentState');
 
   const dataToRender = responseUserH5pCurrentStateList?.data?.filter(
     (h5pState) => h5pState.payloadJson.userId === userId,
