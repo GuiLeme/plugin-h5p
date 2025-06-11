@@ -17,7 +17,7 @@ export function IterativeSyncCurrentState(props: IterativeSyncCurrentStateProps)
 
   const {
     data: responseUserH5pCurrentStateList,
-  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.All_ITEMS, 'userH5pCurrentState');
+  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.ALL_ITEMS, 'userH5pCurrentState');
 
   const dataToRender = responseUserH5pCurrentStateList?.data?.filter(
     (h5pState) => h5pState.payloadJson.userId === userId,

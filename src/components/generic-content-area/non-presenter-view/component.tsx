@@ -10,7 +10,7 @@ import { UserH5pCurrentState } from '../types';
 declare const window: CurrentH5pStateWindow;
 
 function NonPresenterViewComponent(props: NonPresenterViewComponentProps) {
-  const stopInfinitLoop = useRef(false);
+  const stopInfiniteLoop = useRef(false);
   const containerRef = useRef(null);
 
   const [contentRendered, setContentRendered] = useState(false);
@@ -24,7 +24,7 @@ function NonPresenterViewComponent(props: NonPresenterViewComponentProps) {
     data: responseUserH5pCurrentStateList,
     pushEntry: pushH5pCurrentState,
     replaceEntry: replaceH5pCurrentState,
-  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.All_ITEMS, 'userH5pCurrentState');
+  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.ALL_ITEMS, 'userH5pCurrentState');
 
   const responseObject = responseUserH5pCurrentStateList?.data?.filter(
     (h5pStateFromList) => h5pStateFromList.payloadJson.userId === currentUserId,
@@ -101,8 +101,8 @@ function NonPresenterViewComponent(props: NonPresenterViewComponentProps) {
     return null;
   }, [responseUserH5pCurrentStateList]);
   if (pushEntryTestResult
-    && pushEntryLadTestResult && !stopInfinitLoop.current && contentRendered) {
-    stopInfinitLoop.current = true;
+    && pushEntryLadTestResult && !stopInfiniteLoop.current && contentRendered) {
+    stopInfiniteLoop.current = true;
     window.H5P?.externalDispatcher?.on('xAPI', eventHandler);
   }
 

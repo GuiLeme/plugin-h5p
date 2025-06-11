@@ -7,7 +7,7 @@ import {
   BbbPluginSdk,
   GenericContentMainArea,
   PluginApi,
-  LayoutPresentatioAreaUiDataNames,
+  LayoutPresentationAreaUiDataNames,
   UiLayouts,
   CurrentPresentation,
   PresentationToolbarButton,
@@ -44,12 +44,12 @@ function PluginManager(
   const [contentJson, setContentJson] = useState<string>(null);
   const [currentText, setCurrentText] = useState<string>(null);
   const [linkThatGeneratedJsonContent, setLinkThatGeneratedJsonContent] = useState<string>();
-  const { data: testResultResponse, deleteEntry: testResultDeleteEntry } = pluginApi.useDataChannel<TestResult>('testResult', DataChannelTypes.All_ITEMS);
-  const { deleteEntry: deleteUserH5pCurrentStateList } = pluginApi.useDataChannel<TestResult>('testResult', DataChannelTypes.All_ITEMS, 'userH5pCurrentState');
+  const { data: testResultResponse, deleteEntry: testResultDeleteEntry } = pluginApi.useDataChannel<TestResult>('testResult', DataChannelTypes.ALL_ITEMS);
+  const { deleteEntry: deleteUserH5pCurrentStateList } = pluginApi.useDataChannel<TestResult>('testResult', DataChannelTypes.ALL_ITEMS, 'userH5pCurrentState');
   const [genericContentId, setGenericContentId] = useState<string>('');
   const currentUserPresenterPrevious = useRef<boolean>(currentUser?.presenter);
 
-  const currentLayout = pluginApi.useUiData(LayoutPresentatioAreaUiDataNames.CURRENT_ELEMENT, [{
+  const currentLayout = pluginApi.useUiData(LayoutPresentationAreaUiDataNames.CURRENT_ELEMENT, [{
     isOpen: true,
     genericContentId: '',
     currentElement: UiLayouts.WHITEBOARD,
@@ -87,11 +87,11 @@ function PluginManager(
         if (match && match.length > 0) {
           const longest = match.sort((a, b) => b.length - a.length);
           const indexOfH5P = longest[0].indexOf('H5P');
-          const jsonContentWithlinebreaks = longest[0].substring(indexOfH5P + 3);
-          const jsonContent = jsonContentWithlinebreaks.replace(/-(\r\n|\n|\r)/gm, '-')
+          const jsonContentWithLinebreaks = longest[0].substring(indexOfH5P + 3);
+          const jsonContent = jsonContentWithLinebreaks.replace(/-(\r\n|\n|\r)/gm, '-')
             .replace(/(?<=[\w])(\r\n|\n|\r)(?=[\w])/gm, '').replace(/(\r\n|\n|\r)\./gm, '.')
             .replace(/(\r\n|\n|\r)/gm, ' ');
-          pluginLogger.debug(`Debug log to see what comes from the slide text (jsonContentWithlinebreaks): ${jsonContentWithlinebreaks} \n\n (JSON.parse(jsonContent)): `, JSON.parse(jsonContent));
+          pluginLogger.debug(`Debug log to see what comes from the slide text (jsonContentWithLinebreaks): ${jsonContentWithLinebreaks} \n\n (JSON.parse(jsonContent)): `, JSON.parse(jsonContent));
           if (isValidJSON(jsonContent)) {
             setLinkThatGeneratedJsonContent(currentTxtUri);
             setCurrentText(jsonContent);
@@ -197,7 +197,7 @@ function PluginManager(
       previousTestResult.current = JSON.stringify(testResultResponse.data);
       genericContentList.push(new GenericContentSidekickArea({
         name: 'Students results',
-        section: 'Studens',
+        section: 'Students',
         contentFunction: (element) => {
           const root = ReactDOM.createRoot(element);
           root.render(

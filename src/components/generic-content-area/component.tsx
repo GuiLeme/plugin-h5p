@@ -26,7 +26,7 @@ export function GenericContentRenderFunction(props: GenericContentRenderFunction
 
   const {
     data: h5pLatestStateUpdate,
-  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.All_ITEMS, 'userH5pCurrentState');
+  } = pluginApi.useDataChannel<UserH5pCurrentState>('testResult', DataChannelTypes.ALL_ITEMS, 'userH5pCurrentState');
   const [
     listOfStudentsWithH5pState,
     setListOfStudentsWithH5pState,
